@@ -38,8 +38,8 @@ if [ "$count" -eq 1 ]; then
    uci set network.lan.proto='dhcp'
 elif [ "$count" -gt 1 ]; then
    # 多网口设备 支持修改为别的ip地址
-   uci set network.lan.ipaddr='192.168.100.1'
-   echo "set 192.168.100.1 at $(date)" >> $LOGFILE
+   uci set network.lan.ipaddr='192.168.5.1'
+   echo "set 192.168.5.1 at $(date)" >> $LOGFILE
    # 判断是否启用 PPPoE
    echo "print enable_pppoe value=== $enable_pppoe" >> $LOGFILE
    if [ "$enable_pppoe" = "yes" ]; then
@@ -63,9 +63,9 @@ uci delete ttyd.@ttyd[0].interface
 uci set dropbear.@dropbear[0].Interface=''
 uci commit
 
-# 设置编译作者信息
+# 设置编译作者信息 "Compiled by wukongdaily"
 FILE_PATH="/etc/openwrt_release"
-NEW_DESCRIPTION="Compiled by wukongdaily"
+NEW_DESCRIPTION="Compiled by Ben.Wu"
 sed -i "s/DISTRIB_DESCRIPTION='[^']*'/DISTRIB_DESCRIPTION='$NEW_DESCRIPTION'/" "$FILE_PATH"
 
 exit 0
